@@ -17,11 +17,11 @@
     <link href="css/bootstrap-theme.css" rel="stylesheet">
     <!--external css-->
     <!-- font icon -->
-    <link href="css/elegant-icons-style.css" rel="stylesheet" />
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/elegant-icons-style.css" rel="stylesheet"/>
+    <link href="css/font-awesome.min.css" rel="stylesheet"/>
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="css/style-responsive.css" rel="stylesheet"/>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -45,7 +45,8 @@
 
     <header class="header dark-bg">
         <div class="toggle-nav">
-            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
+                    class="icon_menu"></i></div>
         </div>
 
         <!--logo start-->
@@ -82,11 +83,12 @@
                         <li>
                             <a href="#">
                                 <div class="task-info">
-                                    <div class="desc">Design PSD </div>
+                                    <div class="desc">Design PSD</div>
                                     <div class="percent">90%</div>
                                 </div>
                                 <div class="progress progress-striped">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: 90%">
                                         <span class="sr-only">90% Complete (success)</span>
                                     </div>
                                 </div>
@@ -101,7 +103,8 @@
                                     <div class="percent">30%</div>
                                 </div>
                                 <div class="progress progress-striped">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: 30%">
                                         <span class="sr-only">30% Complete (warning)</span>
                                     </div>
                                 </div>
@@ -114,7 +117,8 @@
                                     <div class="percent">80%</div>
                                 </div>
                                 <div class="progress progress-striped">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                                         <span class="sr-only">80% Complete</span>
                                     </div>
                                 </div>
@@ -127,7 +131,8 @@
                                     <div class="percent">78%</div>
                                 </div>
                                 <div class="progress progress-striped">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="78"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: 78%">
                                         <span class="sr-only">78% Complete (danger)</span>
                                     </div>
                                 </div>
@@ -140,7 +145,8 @@
                                     <div class="percent">50%</div>
                                 </div>
                                 <div class="progress progress-striped active">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 50%">
                                         <span class="sr-only">50% Complete</span>
                                     </div>
                                 </div>
@@ -416,7 +422,9 @@
             <!-- page start-->
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" >Add &nbsp; Country</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add &nbsp
+                        Country
+                    </button>
                     <!--          data-target is the id of the modal-->
 
 
@@ -447,9 +455,12 @@
                             <td th:text="${country.nationality}"></td>
                             <td>
                                 <div class="btn-group">
-                                    <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-primary" id="editButton"><i class="icon_pencil-edit"></i></a>
-                                    <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-success" id="detailsButton"><i class="icon_document_alt"></i></a>
-                                    <a th:href="@{/countries/delete/(id=${country.id})}" class="btn btn-danger" id="deleteButton"><i class="icon_close_alt2"></i></a>
+                                    <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-primary"
+                                       id="editButton"><i class="icon_pencil-edit"></i></a>
+                                    <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-success"
+                                       id="detailsButton"><i class="icon_document_alt"></i></a>
+                                    <a th:href="@{/countries/delete/(id=${country.id})}" class="btn btn-danger"
+                                       id="deleteButton"><i class="icon_close_alt2"></i></a>
 
                                     <!--                          to get the value of country.id we need dollar sign-->
                                     <!--                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" >Edit</button>-->
@@ -463,28 +474,17 @@
                 </div>
             </div>
 
-
             <!-- page end-->
         </section>
     </section>
-    <!--main content end-->
-    <!--    <div class="text-right">-->
-    <!--      <div class="credits">-->
-    <!--          &lt;!&ndash;-->
-    <!--            All the links in the footer should remain intact.-->
-    <!--            You can delete the links only if you purchased the pro version.-->
-    <!--            Licensing information: https://bootstrapmade.com/license/-->
-    <!--            Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin-->
-    <!--          &ndash;&gt;-->
-    <!--          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
-    <!--        </div>-->
-    <!--    </div>-->
+
 </section>
 <!-- container section end -->
 
 
 <!--Add Modal -->
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -521,7 +521,7 @@
                         <div class="container bg-light">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary">Save</button>&nbsp;&nbsp;&nbsp;
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -538,7 +538,8 @@
 </div>
 
 <!--Edit Modal-->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -561,7 +562,7 @@
                     </div>
                     <div class="form-group">
                         <label for="capitalEdit" class="col-form-label">Capital:</label>
-                        <input type="text" class="form-control" id="capitalEdit" name="capital" >
+                        <input type="text" class="form-control" id="capitalEdit" name="capital">
                     </div>
                     <div class="form-group">
                         <label for="codeEdit" class="col-form-label">Code:</label>
@@ -573,13 +574,14 @@
                     </div>
                     <div class="form-groupEdit">
                         <label for="nationalityEdit" class="col-form-label">Nationality:</label>
-                        <input type="text" class="form-control" id="nationalityEdit" name="nationality" >
-                    </div><br>
+                        <input type="text" class="form-control" id="nationalityEdit" name="nationality">
+                    </div>
+                    <br>
                     <div class="form-groupEdit">
                         <div class="container bg-light">
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="btn btn-primary">Save</button>&nbsp;&nbsp;&nbsp;
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -606,7 +608,7 @@
             </div>
             <div class="modal-footer">
                 <a type="button" id="confirmDeleteButton" href="" class="btn btn-primary">Yes</a>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
@@ -654,9 +656,6 @@
                         <label for="nationalityDetails" class="col-form-label">Nationality </label>
                         <input type="text" class="form-control" id="nationalityDetails" name="nationality" readonly>
                     </div>
-
-
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -665,8 +664,6 @@
         </div>
     </form>
 </div>
-
-
 
 <!-- javascripts -->
 <script src="js/jquery.js"></script>
@@ -677,7 +674,6 @@
 <!--custome script for all page-->
 <script src="js/scripts.js"></script>
 <script src="js/country.js"></script>
-
 
 
 </body>
