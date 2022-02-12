@@ -325,9 +325,9 @@
                       <ul class="sub">
                           <li><a class="" th:href="@{/vehicles}">Vehicle Data</a></li>
                           <!--              @{/vehicles} to call vehicles in the controller-- get mapping-->
-                          <li><a class="" th:href="@{/vehiclemaintenances}">Maintenance</a></li>
-                          <li><a class="" th:href="@{/vehiclemovements}">Movements</a></li>
-                          <li><a class="" th:href="@{/vehiclehires}">Hires</a></li>
+                          <li><a class="" th:href="@{/vehicleMaintenances}">Maintenance</a></li>
+                          <li><a class="" th:href="@{/vehicleMovements}">Movements</a></li>
+                          <li><a class="" th:href="@{/vehicleHires}">Hires</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -337,10 +337,10 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" th:href="@{/vehiclemakes}">Vehicle Make</a></li>
-                          <li><a class="" th:href="@{/vehicletypes}">Vehicle Types</a></li>
-                          <li><a class="" th:href="@{/vehiclemodels}">Vehicle Models</a></li>
-                          <li><a class="" th:href="@{/vehiclestatuses}">Status Values</a></li>
+                          <li><a class="" th:href="@{/vehicleMakes}">Vehicle Make</a></li>
+                          <li><a class="" th:href="@{/vehicleTypes}">Vehicle Types</a></li>
+                          <li><a class="" th:href="@{/vehicleModels}">Vehicle Models</a></li>
+                          <li><a class="" th:href="@{/vehicleStatuses}">Status Values</a></li>
                       </ul>
                   </li>
                   <li class="sub-menu">
@@ -364,8 +364,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" th:href="@{/jobtitles}">Job Titles</a></li>
-                          <li><a class="" th:href="@{/employeetypes}">Employee Types</a></li>
+                          <li><a class="" th:href="@{/jobTitles}">Job Titles</a></li>
+                          <li><a class="" th:href="@{/employeeTypes}">Employee Types</a></li>
                       </ul>
                   </li>
 
@@ -377,7 +377,7 @@
                       </a>
                       <ul class="sub">
                           <li><a class="" th:href="@{/invoices}">Invoices</a></li>
-                          <li><a class="" th:href="@{/invoicestatuses}">Invoice Status Values</a></li>
+                          <li><a class="" th:href="@{/invoiceStatuses}">Invoice Status Values</a></li>
                       </ul>
                   </li>
 
@@ -414,9 +414,9 @@
           </div>
         </div>
         <!-- page start-->
-          <div class="row">
+          <div class="row"  >
               <div class="col-lg-12">
-                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" >Add &nbsp; Country</button>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal" >Add &nbsp; New</button>
                   <!--          data-target is the id of the modal-->
 
 
@@ -426,7 +426,7 @@
                           <th>ID</th>
                           <th>Description</th>
                           <th>Details</th>
-                          <th>Action</th>
+                          <th><i class="icon_cogs"></i> Action</th>
                       </tr>
                       </thead>
                       <tbody>
@@ -466,13 +466,13 @@
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Add New Country</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Add New Vehicle Make</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
               </div>
               <div class="modal-body">
-                  <form th:action="@{/vehicleTypes/update}" method="put">
+                  <form th:action="@{/vehicleTypes/addNew}" method="post">
                       <div class="form-group">
                           <label for="description" class="col-form-label">Description:</label>
                           <input type="text" class="form-control" id="description" name="description">
@@ -480,20 +480,8 @@
                                                       name should be exactly correspond to the name in the model(that is we fetch from the entity in db)-->
                       </div>
                       <div class="form-group">
-                          <label for="capital" class="col-form-label">Capital:</label>
-                          <input type="text" class="form-control" id="capital" name="capital">
-                      </div>
-                      <div class="form-group">
-                          <label for="code" class="col-form-label">Code:</label>
-                          <input type="text" class="form-control" id="code" name="code">
-                      </div>
-                      <div class="form-group">
-                          <label for="continent" class="col-form-label">Continent:</label>
-                          <input type="text" class="form-control" id="continent" name="continent">
-                      </div>
-                      <div class="form-group">
-                          <label for="nationality" class="col-form-label">Nationality:</label>
-                          <input type="text" class="form-control" id="nationality" name="nationality">
+                          <label for="details" class="col-form-label">Details:</label>
+                          <input type="text" class="form-control" id="details" name="details">
                       </div>
                       <div class="form-group">
                           <div class="container bg-light">
@@ -503,12 +491,7 @@
                               </div>
                           </div>
                       </div>
-
                   </form>
-                  <!--              </div>-->
-                  <!--              <div class="modal-footer">-->
-                  <!--              </div>-->
-
               </div>
           </div>
       </div>
@@ -521,7 +504,7 @@
       <div class="modal-dialog" role="document">
           <div class="modal-content">
               <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel2">Add New Country</h5>
+                  <h5 class="modal-title" id="exampleModalLabel2">Add New Record</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                   </button>
@@ -539,20 +522,8 @@
                                                       name should be exactly correspond to the name in the model(that is we fetch from the entity in db)-->
                       </div>
                       <div class="form-group">
-                          <label for="capitalEdit" class="col-form-label">Capital:</label>
-                          <input type="text" class="form-control" id="capitalEdit" name="capital">
-                      </div>
-                      <div class="form-group">
-                          <label for="codeEdit" class="col-form-label">Code:</label>
-                          <input type="text" class="form-control" id="codeEdit" name="code">
-                      </div>
-                      <div class="form-groupEdit">
-                          <label for="continentEdit" class="col-form-label">Continent:</label>
-                          <input type="text" class="form-control" id="continentEdit" name="continent">
-                      </div>
-                      <div class="form-groupEdit">
-                          <label for="nationalityEdit" class="col-form-label">Nationality:</label>
-                          <input type="text" class="form-control" id="nationalityEdit" name="nationality">
+                          <label for="detailsEdit" class="col-form-label">Details:</label>
+                          <input type="text" class="form-control" id="detailsEdit" name="details">
                       </div>
                       <br>
                       <div class="form-groupEdit">
@@ -599,7 +570,7 @@
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="editModalLabel">Country Details</h5>
+                      <h5 class="modal-title" id="editModalLabel">Vehicle Type Details</h5>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                       </button>
@@ -612,28 +583,15 @@
                       </div>
 
                       <div class="form-group">
-                          <label for="codeDetails" class="col-form-label">Code:</label>
-                          <input type="text" class="form-control" id="codeDetails" name="code" readonly>
-                      </div>
-
-                      <div class="form-group">
-                          <label for="capitalDetails" class="col-form-label">Capital:</label>
-                          <input type="text" class="form-control" id="capitalDetails" name="capital" required>
-                      </div>
-
-                      <div class="form-group">
                           <label for="descriptionDetails" class="col-form-label">Description</label>
-                          <input type="text" class="form-control" id="descriptionDetails" name="description" required>
-                      </div>
-                      <div class="form-group">
-                          <label for="continentDetails" class="col-form-label">Continent </label>
-                          <input type="text" class="form-control" id="continentDetails" name="continent" readonly>
+                          <input type="text" class="form-control" id="descriptionDetails" name="description" readonly>
                       </div>
 
                       <div class="form-group">
-                          <label for="nationalityDetails" class="col-form-label">Nationality </label>
-                          <input type="text" class="form-control" id="nationalityDetails" name="nationality" readonly>
+                          <label for="detailsDetails" class="col-form-label">Details </label>
+                          <input type="text" class="form-control" id="detailsDetails" name="details" readonly>
                       </div>
+
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -642,6 +600,7 @@
           </div>
       </form>
   </div>
+
 
 
 
