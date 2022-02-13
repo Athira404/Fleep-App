@@ -50,6 +50,7 @@ public class StateController {
         return "redirect:/states";
     }
 
+
     @RequestMapping(value="/states/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(Integer id) {
         stateService.delete(id);

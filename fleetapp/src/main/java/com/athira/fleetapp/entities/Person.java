@@ -26,10 +26,9 @@ public class Person {
 	private Integer id;
 	private String firstname;
 	private String lastname;
-	private String othername;
+	private String otherName;
 	private String title;
 	private String initials;
-	private String socialSecurityNumber;
 	private String gender;
 	private String maritalStatus;
 	
@@ -48,7 +47,7 @@ public class Person {
 	private String city;
 	private String address;
 	private String phone;
-	private String mobile;
+//	private String mobile;
 	private String email;
 	private String photo;
 }

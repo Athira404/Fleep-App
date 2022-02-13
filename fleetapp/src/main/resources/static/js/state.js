@@ -34,6 +34,7 @@ $('document').ready(function() {
 		$('#deleteModal #delButton').attr('href', href);
 		$('#deleteModal').modal();
 	});
+
 });
 
 
