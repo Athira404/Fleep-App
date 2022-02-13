@@ -21,7 +21,7 @@ public class InvoiceStatusService {
         invoiceStatusRepository.save(invoiceStatus);
     }
 
-    public Optional<InvoiceStatus> findById(int id) {
+    public Optional<InvoiceStatus> findById(Integer id) {
         return invoiceStatusRepository.findById(id);
     }
 

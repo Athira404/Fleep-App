@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 //CommonObject is not an entity --> it's an abstract class, we can't instantiate this, we only need to use it to inherit other classes
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class CommonObject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,7 @@ public class CommonObject {
     public CommonObject() {
 
     }
+
     public CommonObject(String description, String details) {
         this.description = description;
         this.details = details;
@@ -31,6 +32,7 @@ public class CommonObject {
     }
 
     public void setId(Integer id) {
+
         this.id = id;
     }
 

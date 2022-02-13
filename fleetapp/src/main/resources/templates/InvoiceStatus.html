@@ -460,43 +460,65 @@
 
 
   <!--Add Modal -->
-  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-       aria-hidden="true">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Add New Vehicle Make</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
-                  <form th:action="@{/invoiceStatuses/addNew}" method="post">
+  <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <form th:action="@{/invoices/addNew}" method="post">
+          <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New Invoice Record</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+
+                  <div class="modal-body">
+
                       <div class="form-group">
-                          <label for="description" class="col-form-label">Description:</label>
-                          <input type="text" class="form-control" id="description" name="description">
-                          <!--                        name in input is the name/attribute in entity,
-                                                      name should be exactly correspond to the name in the model(that is we fetch from the entity in db)-->
+                          <label for="idAdd" class="col-form-label">Id:</label>
+                          <input type="text" class="form-control" id="idAdd" name="id" disabled>
                       </div>
+
                       <div class="form-group">
-                          <label for="details" class="col-form-label">Details:</label>
-                          <input type="text" class="form-control" id="details" name="details">
+                          <label for="ddlClientAdd" class="col-form-label">Client: </label>
+                          <select class="form-control" id="ddlClientAdd" name="clientid">
+                              <option>-SELECT-</option>
+                              <option th:each="client : ${clients}"
+                                      th:value="${client.id}"
+                                      th:text="${client.name}">
+                              </option>
+                          </select>
                       </div>
+
                       <div class="form-group">
-                          <div class="container bg-light">
-                              <div class="col-md-12 text-center">
-                                  <button type="submit" class="btn btn-primary">Save</button>&nbsp;&nbsp;&nbsp;
-                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                              </div>
-                          </div>
+                          <label for="invoiceDateAdd" class="col-form-label">Invoice Date:</label>
+                          <input type="date" class="form-control" id="invoiceDateAdd" name="invoiceDate">
                       </div>
-                  </form>
+
+                      <div class="form-group">
+                          <label for="ddlInvoiceStatusAdd" class="col-form-label">Invoice Status: </label>
+                          <select class="form-control" id="ddlInvoiceStatusAdd" name="invoicestatusid">
+                              <option>-SELECT-</option>
+                              <option th:each="invoiceStatus : ${invoiceStatuses}"
+                                      th:value="${invoiceStatus.id}"
+                                      th:text="${invoiceStatus.description}">
+                              </option>
+                          </select>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="remarksAdd" class="col-form-label">Remarks:</label>
+                          <input type="text" class="form-control" id="remarksAdd" name="remarks">
+                      </div>
+                  </div>
+
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
               </div>
           </div>
-      </div>
-
+      </form>
   </div>
-
   <!--Edit Modal-->
   <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
        aria-hidden="true">
@@ -602,13 +624,13 @@
 
 
 
-  <!-- javascripts -->
+  <!-- javascript -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <!-- nice scroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--custome script for all page-->
+  <!--custom script for all page-->
   <script src="js/scripts.js"></script>
   <script src="js/invoiceStatus.js"></script>
 

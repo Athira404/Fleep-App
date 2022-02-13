@@ -33,7 +33,7 @@ public class InvoiceStatusController {
 
     @RequestMapping("invoiceStatuses/findById")
     @ResponseBody
-    public Optional<InvoiceStatus> findById(int id) {
+    public Optional<InvoiceStatus> findById(Integer id) {
         return invoiceStatusService.findById(id);
     }
 
