@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Invoice {	
 	
 	@Id
@@ -33,14 +33,14 @@ public class Invoice {
 	private Date invoiceDate;
 	
 	@ManyToOne
-	@JoinColumn(name="invoicestatusid", insertable=false, updatable=false)	
+	@JoinColumn(name="invoiceStatusId", insertable=false, updatable=false)
 	private InvoiceStatus invoiceStatus;
-	private Integer invoicestatusid;
+	private Integer invoiceStatusId;
 	
 	@ManyToOne
-	@JoinColumn(name="clientid", insertable=false, updatable=false)	
+	@JoinColumn(name="clientId", insertable=false, updatable=false)
 	private Client client;
-	private Integer clientid;
+	private Integer clientId;
 	
 	private String remarks;	
 }
