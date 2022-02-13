@@ -318,7 +318,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
+                          <i class="fas fa-car"></i>
                           <span>Vehicles</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -388,7 +388,7 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
-                          <li><a class="" th:href="@{/countries}">Countries</a></li>
+                          <li><a class="" th:href="@{/contacts}">Countries</a></li>
                           <li><a class="" th:href="@{/states}"><span>States</span></a></li>
                           <li><a class="" th:href="@{/locations}"><span>Locations</span></a></li>
                       </ul>
@@ -414,31 +414,66 @@
           </div>
         </div>
         <!-- page start-->
-        <h1>List Of Countries</h1>
-        <!-- page end-->
+          <div class="row">
+              <div class="col-lg-12">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add &nbsp
+                      New
+                  </button>
+                  <!-- data-target is the id of the modal-->
+
+
+                  <table class="table">
+                      <thead>
+                      <tr>
+                          <th><i class="icon_profile"></i>Name</th>
+                          <th><i class="icon_mail_alt"></i>Email</th>
+                          <th><i class="icon_mobile"></i>Phone</th>
+                          <th><i class="icon_cogs"></i>Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr th:each="contact:${contacts}">
+                          <!--                  th:each="contact:${contacts}"
+                                                     "th:each="contact:$" -- means -- for each contact in
+                                                     ${contacts} -- means -- in contacts -- contacts is from the model we mentioned in our controller
+
+                          -->
+                          <td th:text="${contact.id}"></td>
+                          <td th:text="${contact.firstname}+' ' + ${contact.lastname}"></td>
+                          <td th:text="${contact.email}"></td>
+                          <td th:text="${contact.phone}"></td>
+                          <td>
+                              <div class="btn-group">
+                                  <a th:href="@{/contacts/findById/(id=${contact.id})}" class="btn btn-primary"
+                                     id="editButton"><i class="icon_pencil-edit"></i></a>
+                                  <a th:href="@{/contacts/findById/(id=${contact.id})}" class="btn btn-success"
+                                     id="detailsButton"><i class="icon_document_alt"></i></a>
+                                  <a th:href="@{/contacts/delete/(id=${contact.id})}" class="btn btn-danger"
+                                     id="deleteButton"><i class="icon_close_alt2"></i></a>
+
+<!--                          to get the value of contact.id we need dollar sign-->
+<!--                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" >Edit</button>-->
+<!--                             <a th:href="@{/contacts/findById/(id=${contact.id})}" class="btn btn-primary" id="editButton" data-toggle="modal" data-target="#editModal">Edit</a>-->
+<!--                          we can also use these (above) methods but let's try js for modal pop up (refer contact js in js dir-->
+                              </div>
+                          </td>
+                      </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
       </section>
     </section>
-    <!--main content end-->
-<!--    <div class="text-right">-->
-<!--      <div class="credits">-->
-<!--          &lt;!&ndash;-->
-<!--            All the links in the footer should remain intact.-->
-<!--            You can delete the links only if you purchased the pro version.-->
-<!--            Licensing information: https://bootstrapmade.com/license/-->
-<!--            Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin-->
-<!--          &ndash;&gt;-->
-<!--          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>-->
-<!--        </div>-->
-<!--    </div>-->
+
   </section>
   <!-- container section end -->
-  <!-- javascripts -->
+  <!-- javascript-->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <!-- nice scroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--custome script for all page-->
+  <!--custom script for all page-->
   <script src="js/scripts.js"></script>
 
 

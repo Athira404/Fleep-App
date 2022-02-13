@@ -5,9 +5,10 @@ $('document').ready(function() {
 		$.get(href, function(invoice, status){
 			$('#idEdit').val(invoice.id);
 			$('#ddlClientEdit').val(invoice.clientid);
-			$('#invoiceDateEdit').val(invoiceDate);
 			$('#ddlInvoiceStatusEdit').val(invoice.invoicestatusid);
-			$('#remarksEdit').val(invoice.remarks);
+            $('#remarksEdit').val(invoice.remarks);
+            var invoiceDate = invoice.invoiceDate.substr(0,10);
+			$('#invoiceDateEdit').val(invoice.invoiceDate);
 		});
 		$('#editModal').modal();
 	});
@@ -18,9 +19,11 @@ $('document').ready(function() {
 		$.get(href, function(invoice, status){
 			$('#idDetails').val(invoice.id);
 			$('#ddlClientDetails').val(invoice.clientid);
+			$('#ddlInvoiceStatusDetails').val(invoice.invoicestatusid);
+            $('#remarksDetails').val(invoice.remarks);
+            var invoiceDate = invoice.invoiceDate.substr(0,10);
 			$('#invoiceDateDetails').val(invoiceDate);
-			$('#ddlStatusDetails').val(invoice.invoicestatusid);
-			$('#remarksDetails').val(invoice.remarks);
+
 		});
 		$('#detailsModal').modal();
 	});

@@ -4,6 +4,7 @@ import com.athira.fleetapp.entities.Client;
 import com.athira.fleetapp.entities.Invoice;
 import com.athira.fleetapp.services.ClientService;
 import com.athira.fleetapp.services.InvoiceService;
+import com.athira.fleetapp.services.InvoiceStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,10 @@ public class InvoiceController {
 
     @Autowired
     private InvoiceService invoiceService;
-    @Autowired	private ClientService clientService;
+    @Autowired
+    private ClientService clientService;
+    @Autowired
+    private InvoiceStatusService invoiceStatusService;
 
 
     @GetMapping("/invoices")
@@ -30,6 +34,7 @@ public class InvoiceController {
 
         model.addAttribute("invoices", invoiceService.getInvoices());
         model.addAttribute("clients", clientService.getClients());
+        model.addAttribute("invoiceStatuses", invoiceStatusService.getInvoiceStatuses());
 
         return "Invoice";
     }

@@ -35,22 +35,22 @@ public class VehicleHire {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	private Date dateOut;
 	
-	private String timeOut;
+	private String timeOut;//time, when they hired the vehicle
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")	
 	private Date dateIn;
 	
-	private String timeIn;
+	private String timeIn;//time, when they returned the vehicle
 	
 	@ManyToOne
 	@JoinColumn(name="clientid", insertable=false, updatable=false)
 	private Client client;
-	private Integer clientid;
+	private Integer clientid;//who hired the vehicle
 	
 	@ManyToOne
 	@JoinColumn(name="locationid", insertable=false, updatable=false)
 	private Location location;
-	private Integer locationid;
+	private Integer locationid;//where they have taken the vehicle
 	
 	private String price;
 	
