@@ -50,7 +50,7 @@ public class VehicleController {
 
     @RequestMapping("vehicles/findById")
     @ResponseBody
-    public Optional<Vehicle> findById(int id) {
+    public Optional<Vehicle> findById(Integer id) {
         return vehicleService.findById(id);
     }
 

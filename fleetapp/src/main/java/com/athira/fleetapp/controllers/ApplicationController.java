@@ -20,4 +20,13 @@ public class ApplicationController {
         return "login";
     }
 
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+    @GetMapping("/accessDenied")
+    public String accessDenied(){
+        return "403";
+    }
 }

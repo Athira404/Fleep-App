@@ -1,7 +1,10 @@
 package com.athira.fleetapp.services;
 
+import com.athira.fleetapp.entities.Employee;
 import com.athira.fleetapp.entities.EmployeeType;
+import com.athira.fleetapp.entities.User;
 import com.athira.fleetapp.repositories.EmployeeTypeRepository;
+import com.athira.fleetapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,7 @@ import java.util.Optional;
 public class EmployeeTypeService {
     @Autowired
     private EmployeeTypeRepository employeeTypeRepository;
+
 
     public List<EmployeeType> getEmployeeTypes(){
         return employeeTypeRepository.findAll();
@@ -28,4 +32,5 @@ public class EmployeeTypeService {
     public void delete(Integer id) {
         employeeTypeRepository.deleteById(id);
     }
+
 }
