@@ -1,6 +1,6 @@
 $('document').ready(function() {
 
-	$('.table .btn-primary').on('click',function(event){
+	$('.table #editButton').on('click',function(event){
 		event.preventDefault();
 		var href= $(this).attr('href');
 		$.get(href, function(contact, status){
@@ -14,16 +14,21 @@ $('document').ready(function() {
 		$('#editModal').modal();
 	});
 
-	$('.table #detailsButton').on('click',function(event) {
+
+	$('.table #detailsButton').on('click',function(event){
 		event.preventDefault();
 		var href= $(this).attr('href');
-		$.get(href, function(country, status){
-			$('#idDetails').val(country.id);
-			$('#descriptionDetails').val(country.description);
-			$('#codeDetails').val(country.code);
+		$.get(href, function(contact, status){
+			$('#txtEmailDetails').val(contact.email);
+			$('#txtFirstnameDetails').val(contact.firstname);
+			$('#txtIdDetails').val(contact.id);
+			$('#txtLastnameDetails').val(contact.lastname);
+			$('#txtPhoneDetails').val(contact.phone);
+			$('#txtRemarksDetails').val(contact.remarks);
 		});
 		$('#detailsModal').modal();
 	});
+
 
 	$('.table #deleteButton').on('click',function(event) {
 		event.preventDefault();

@@ -57,7 +57,7 @@ $('document').ready(function() {
     			$('#ddlVehicleStatusDetails').val(vehicle.vehiclestatusid);
     			$('#ddlVehicleTypeDetails').val(vehicle.vehicletypeid);
     		});
-    		$('#editModal').modal();
+    		$('#detailsModal').modal();
     	});
 
 
@@ -65,7 +65,7 @@ $('document').ready(function() {
 	$('.table #deleteButton').on('click',function(event) {
 		event.preventDefault();
 		var href = $(this).attr('href');
-		$('#deleteModal #delRef').attr('href', href);
+		$('#deleteModal #confirmDelete').attr('href', href);
 		$('#deleteModal').modal();
 	});
 

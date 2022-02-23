@@ -4,6 +4,7 @@ import com.athira.fleetapp.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -44,8 +45,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login", "/resources/**", "/css/**", "/fonts/**", "/img/**").permitAll()
                 .antMatchers("/register", "/resources/**", "/css/**", "/fonts/**", "/img/**", "/js/**").permitAll()
                 .antMatchers("/users/addNew").permitAll()
-                .antMatchers("/security/user/Edit/**").hasAuthority("ADMIN")
-                .antMatchers("/users/delete/**").hasAuthority("ADMIN")
+//                .antMatchers("/security/user/Edit/**").hasAnyAuthority("ADMIN","SUPERADMIN")
+                .antMatchers("/users").hasAnyAuthority("ADMIN", "SUPERADMIN")
+                .antMatchers("/roles").hasAuthority("SUPERADMIN")
+                .antMatchers("/vehicleMaintenances", "/vehicleMovements", "/vehicleHires").hasAnyAuthority("ADMIN", "SUPERADMIN", "EMPLOYEE")
+                .antMatchers("/employees", "/clients", "/suppliers").hasAnyAuthority("ADMIN", "SUPERADMIN", "EMPLOYEE")
+                .antMatchers("/jobTitles","employeeTypes").hasAnyAuthority("ADMIN", "SUPERADMIN", "EMPLOYEE")
+                .antMatchers("/invoices","/invoiceStatuses").hasAnyAuthority("ADMIN","SUPERADMIN","EMPLOYEE")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().accessDeniedPage("/accessDenied")
@@ -53,8 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/index")
-                        .and()
-                        .exceptionHandling().accessDeniedPage("/accessDenied")
+                .and()
+                .exceptionHandling().accessDeniedPage("/accessDenied")
                 .and()
                 .logout().invalidateHttpSession(true)
                 .clearAuthentication(true)
@@ -70,7 +76,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //   NoOpPasswordEncoder --> not safe
 
     @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

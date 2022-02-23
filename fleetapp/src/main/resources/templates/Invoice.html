@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="utf-8">
@@ -42,17 +42,6 @@
         <a href="index.html" class="logo">Fleet <span class="lite">Application</span></a>
         <!--logo end-->
 
-        <div class="nav search-row" id="top_menu">
-            <!--  search form start -->
-            <ul class="nav top-menu">
-                <li>
-                    <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
-                    </form>
-                </li>
-            </ul>
-            <!--  search form end -->
-        </div>
 
     </header>
     <!--header end-->
@@ -77,9 +66,12 @@
                     <ul class="sub">
                         <li><a class="" th:href="@{/vehicles}">Vehicle Data</a></li>
                         <!--              @{/vehicles} to call vehicles in the controller-- get mapping-->
-                        <li><a class="" th:href="@{/vehicleMaintenances}">Maintenance</a></li>
-                        <li><a class="" th:href="@{/vehicleMovements}">Movements</a></li>
-                        <li><a class="" th:href="@{/vehicleHires}">Hires</a></li>
+                        <li><a class="" th:href="@{/vehicleMaintenances}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Maintenance</a></li>
+                        <li><a class="" th:href="@{/vehicleMovements}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Movements</a></li>
+                        <li><a class="" th:href="@{/vehicleHires}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Hires</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -97,40 +89,42 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="fas fa-user-secret"></i>
+                        <i class="fas fa-users"></i>
                         <span>People</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/employees}">Employees</a></li>
-                        <li><a class="" th:href="@{/clients}">Clients</a></li>
-                        <li><a class="" th:href="@{/suppliers}">Suppliers</a></li>
+                        <li><a class="" th:href="@{/employees}" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Employees</a></li>
+                        <li><a class="" th:href="@{/clients}" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Clients</a></li>
+                        <li><a class="" th:href="@{/suppliers}" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Suppliers</a></li>
                         <li><a class="" th:href="@{/contacts}">Contacts</a></li>
-                        <li><a class="" th:href="@{/users}">Users</a></li>
-                        <li><a class="" th:href="@{/roles}">Roles</a></li>
+                        <li sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN')"><a class="" th:href="@{/users}">Users</a></li>
+                        <li sec:authorize="hasAuthority('SUPERADMIN')"><a class="" th:href="@{/roles}">Roles</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
+                <li class="sub-menu" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">
                     <a href="javascript:;" class="">
                         <i class="fas fa-user-tie"></i>
                         <span>HR Settings</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/jobTitles}">Job Titles</a></li>
-                        <li><a class="" th:href="@{/employeeTypes}">Employee Types</a></li>
+                        <li><a class="" th:href="@{/jobTitles}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Job Titles</a></li>
+                        <li><a class="" th:href="@{/employeeTypes}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Employee Types</a></li>
                     </ul>
                 </li>
 
-                <li class="sub-menu">
+                <li class="sub-menu" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">
                     <a href="javascript:;" class="">
                         <i class="fas fa-file-alt"></i>
                         <span>Accounts</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/invoices}">Invoices</a></li>
-                        <li><a class="" th:href="@{/invoiceStatuses}">Invoice Status Values</a></li>
+                        <li><a class="" th:href="@{/invoices}" sec:authorize="hasAnyAuthority('ADMIN', 'SUPERADMIN', 'EMPLOYEE')">Invoices</a></li>
+                        <li><a class="" th:href="@{/invoiceStatuses}" sec:authorize="hasAnyAuthority('ADMIN', 'SUPERADMIN', 'EMPLOYEE')">Invoice Status Values</a></li>
                     </ul>
                 </li>
 
@@ -168,7 +162,8 @@
             </div>
             <!-- page start-->
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add New</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                    sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Add New</button>
             <br><br>
             <div class="row">
                 <div class="col-lg-12">
@@ -184,7 +179,7 @@
                                 <th><i class="icon_table"></i>Date</th>
                                 <th><i class="icon_table"></i> Client</th>
                                 <th><i class="icon_table"></i>Remarks</th>
-                                <th><i class="icon_cogs"></i> Action</th>
+                                <th sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')"><i class="icon_cogs"></i> Action</th>
                             </tr>
                             <tr th:each="invoice:${invoices}">
                                 <td th:text="${invoice.id}">Id</td>
@@ -192,7 +187,7 @@
                                 <td th:text="${invoice.client.name}">Client</td>
                                 <!--                              invoice has client(relation) and from client I'm going to display client name-->
                                 <td th:text="${invoice.remarks}">Remarks</td>
-                                <td>
+                                <td sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">
                                     <div class="btn-group">
                                         <a class="btn btn-primary" id="editButton"
                                            th:href="@{/invoices/findById/(id=${invoice.id})}"><i

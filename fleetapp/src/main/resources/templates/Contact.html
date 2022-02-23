@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="utf-8">
@@ -41,17 +42,6 @@
         <a href="index.html" class="logo">Fleet <span class="lite">Application</span></a>
         <!--logo end-->
 
-        <div class="nav search-row" id="top_menu">
-            <!--  search form start -->
-            <ul class="nav top-menu">
-                <li>
-                    <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
-                    </form>
-                </li>
-            </ul>
-            <!--  search form end -->
-        </div>
 
     </header>
     <!--header end-->
@@ -76,9 +66,12 @@
                     <ul class="sub">
                         <li><a class="" th:href="@{/vehicles}">Vehicle Data</a></li>
                         <!--              @{/vehicles} to call vehicles in the controller-- get mapping-->
-                        <li><a class="" th:href="@{/vehicleMaintenances}">Maintenance</a></li>
-                        <li><a class="" th:href="@{/vehicleMovements}">Movements</a></li>
-                        <li><a class="" th:href="@{/vehicleHires}">Hires</a></li>
+                        <li><a class="" th:href="@{/vehicleMaintenances}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Maintenance</a></li>
+                        <li><a class="" th:href="@{/vehicleMovements}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Movements</a></li>
+                        <li><a class="" th:href="@{/vehicleHires}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Hires</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
@@ -96,40 +89,42 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="fas fa-user-secret"></i>
+                        <i class="fas fa-users"></i>
                         <span>People</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/employees}">Employees</a></li>
-                        <li><a class="" th:href="@{/clients}">Clients</a></li>
-                        <li><a class="" th:href="@{/suppliers}">Suppliers</a></li>
+                        <li><a class="" th:href="@{/employees}" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Employees</a></li>
+                        <li><a class="" th:href="@{/clients}" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Clients</a></li>
+                        <li><a class="" th:href="@{/suppliers}" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Suppliers</a></li>
                         <li><a class="" th:href="@{/contacts}">Contacts</a></li>
-                        <li><a class="" th:href="@{/users}">Users</a></li>
-                        <li><a class="" th:href="@{/roles}">Roles</a></li>
+                        <li sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN')"><a class="" th:href="@{/users}">Users</a></li>
+                        <li sec:authorize="hasAuthority('SUPERADMIN')"><a class="" th:href="@{/roles}">Roles</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
+                <li class="sub-menu" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">
                     <a href="javascript:;" class="">
                         <i class="fas fa-user-tie"></i>
                         <span>HR Settings</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/jobTitles}">Job Titles</a></li>
-                        <li><a class="" th:href="@{/employeeTypes}">Employee Types</a></li>
+                        <li><a class="" th:href="@{/jobTitles}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Job Titles</a></li>
+                        <li><a class="" th:href="@{/employeeTypes}"
+                               sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">Employee Types</a></li>
                     </ul>
                 </li>
 
-                <li class="sub-menu">
+                <li class="sub-menu" sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN','EMPLOYEE')">
                     <a href="javascript:;" class="">
                         <i class="fas fa-file-alt"></i>
                         <span>Accounts</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{/invoices}">Invoices</a></li>
-                        <li><a class="" th:href="@{/invoiceStatuses}">Invoice Status Values</a></li>
+                        <li><a class="" th:href="@{/invoices}" sec:authorize="hasAnyAuthority('ADMIN', 'SUPERADMIN', 'EMPLOYEE')">Invoices</a></li>
+                        <li><a class="" th:href="@{/invoiceStatuses}" sec:authorize="hasAnyAuthority('ADMIN', 'SUPERADMIN', 'EMPLOYEE')">Invoice Status Values</a></li>
                     </ul>
                 </li>
 
@@ -166,7 +161,9 @@
                 </div>
             </div>
             <!-- page start-->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add New</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal"
+                    sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN')">Add New
+            </button>
             <br><br>
             <div class="row">
                 <div class="col-lg-12">
@@ -186,9 +183,17 @@
                                 <td th:text="${contact.phone}">Phone</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-primary" id="editButton" th:href="@{/contacts/findById/(id=${contact.id})}"><i class="icon_pencil-edit"></i></a>
-                                        <a class="btn btn-success" id="detailsButton" th:href="@{/contacts/findById/(id=${contact.id})}"><i class="icon_document_alt"></i></a>
-                                        <a class="btn btn-danger" id="deleteButton" th:href="@{/contacts/delete/(id=${contact.id})}"><i class="icon_close_alt2"></i></a>
+                                        <a class="btn btn-primary" id="editButton"
+                                           th:href="@{/contacts/findById/(id=${contact.id})}"
+                                           sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN')">
+                                            <i class="icon_pencil-edit"></i></a>
+                                        <a class="btn btn-success" id="detailsButton"
+                                           th:href="@{/contacts/findById/(id=${contact.id})}"><i
+                                                class="icon_document_alt"></i></a>
+                                        <a class="btn btn-danger" id="deleteButton"
+                                           th:href="@{/contacts/delete/(id=${contact.id})}"
+                                           sec:authorize="hasAnyAuthority('ADMIN','SUPERADMIN')">
+                                            <i class="icon_close_alt2"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -203,7 +208,8 @@
 </section>
 <!-- container section end -->
 
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <form th:action="@{/contacts/addNew}" method="post">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -257,7 +263,8 @@
 </div>
 
 
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <form th:action="@{/contacts/update}" method="put">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -309,6 +316,60 @@
         </div>
     </form>
 </div>
+
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <form th:action="@{/contacts/update}" method="put">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Contact Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txtIdDetails" class="col-form-label">Id:</label>
+                        <input type="text" class="form-control" id="txtIdDetails" name="id" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtFirstnameDetails" class="col-form-label">Firstname:</label>
+                        <input type="text" class="form-control" id="txtFirstnameDetails" name="firstname" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtLastnameDetails" class="col-form-label">Lastname:</label>
+                        <input type="text" class="form-control" id="txtLastnameDetails" name="lastname" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtEmailDetails" class="col-form-label">Email:</label>
+                        <input type="text" class="form-control" id="txtEmailDetails" name="email" readonly>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="txtPhoneDetails" class="col-form-label">Phone:</label>
+                        <input type="text" class="form-control" id="txtPhoneDetails" name="phone" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtRemarksDetails" class="col-form-label">Remarks:</label>
+                        <input type="text" class="form-control" id="txtRemarksDetails" name="remarks" readonly>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
     <div class="modal-dialog" role="document">
